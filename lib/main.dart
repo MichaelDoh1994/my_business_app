@@ -4,6 +4,7 @@ import 'package:my_business_app/screens/auth.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:my_business_app/screens/home_page.dart';
+import 'package:my_business_app/screens/splash.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SplashScreen();
+          }
           if (snapshot.hasData) {
             return const HomeScreen();
           }
