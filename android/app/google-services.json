@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "869129125288",
+    "project_id": "my-business-app-a9ff7",
+    "storage_bucket": "my-business-app-a9ff7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869129125288:android:5ab5529370ed919211b19d",
+        "android_client_info": {
+          "package_name": "com.example.my_business_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7tqccLT7AdXvdhJL9oWsK3NnouPh_WpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
