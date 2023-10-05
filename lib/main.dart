@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_business_app/components/tabs.dart';
 import 'package:my_business_app/screens/auth.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:my_business_app/screens/home_page.dart';
 import 'package:my_business_app/screens/splash.dart';
 import 'firebase_options.dart';
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             return const SplashScreen();
           }
           if (snapshot.hasData) {
-            return const HomeScreen();
+            return const TabsScreen();
           }
           return const AuthScreen();
         },

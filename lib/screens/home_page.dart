@@ -1,27 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_business_app/components/service/services.dart';
+import 'package:my_business_app/data/dummy_services.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(Icons.exit_to_app),
-            color: Theme.of(context).colorScheme.primary,
-          )
-        ],
-      ),
-      body: const Center(
-        child: Text('Loading!'),
-      ),
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Services(
+            services: dummyServices,
+          ),
+        )
+      ],
     );
   }
 }

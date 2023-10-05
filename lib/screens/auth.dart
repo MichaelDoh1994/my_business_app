@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -17,7 +18,7 @@ class _AuthScreenState extends State<AuthScreen> {
   var _isLoggedIn = true;
   var _enteredEmail = '';
   var _enteredPassword = '';
-  // var _enteredUsername = '';
+  var _enteredUsername = '';
   var _isAuthenticating = false;
 
   void _submitForm() async {
@@ -31,6 +32,7 @@ class _AuthScreenState extends State<AuthScreen> {
       setState(() {
         _isAuthenticating = true;
       });
+
       if (_isLoggedIn) {
         final userCredentials = await _firebase.signInWithEmailAndPassword(
           email: _enteredEmail,
@@ -45,6 +47,16 @@ class _AuthScreenState extends State<AuthScreen> {
         );
         final user = userCredentials.user;
         print(user);
+
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(userCredentials.user!.uid)
+            .set(
+          {
+            'username': _enteredUsername,
+            'email': _enteredEmail,
+          },
+        );
       }
     } on FirebaseAuthException catch (err) {
       if (err.code == 'email-already-in-use') {
@@ -82,6 +94,23 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          if (!_isLoggedIn)
+                            TextFormField(
+                              validator: (value) {
+                                if (value == null ||
+                                    value.isEmpty ||
+                                    value.trim().length < 4) {
+                                  return 'Please enter a valid username - at least 4 characters';
+                                }
+                                return null;
+                              },
+                              decoration:
+                                  const InputDecoration(labelText: 'Username'),
+                              enableSuggestions: false,
+                              onSaved: (newValue) {
+                                _enteredUsername = newValue!;
+                              },
+                            ),
                           TextFormField(
                             decoration: const InputDecoration(
                                 labelText: 'Email Address'),
