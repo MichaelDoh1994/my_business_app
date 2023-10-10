@@ -67,6 +67,9 @@ flutter:
     - assets/images/new barber.webp
     - assets/images/new hair.webp
     - assets/images/new spa.webp
+    - assets/images/profile.webp
+    - assets/images/nails.webp
+    - assets/images/skin.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

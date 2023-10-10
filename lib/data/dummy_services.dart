@@ -19,4 +19,16 @@ const dummyServices = [
     description:
         'Skilled massage therapist with a commitment to providing a relaxing and therapeutic experience for clients.',
   ),
+  Service(
+    title: 'Nails',
+    image: 'assets/images/nails.webp',
+    description:
+        'Exceptional nail technician providing top notch nail care in a relaxing environment.',
+  ),
+  Service(
+    title: 'Skin Care',
+    image: 'assets/images/skin.webp',
+    description:
+        'A range of practices that support skin integrity, enhance its appearance, and relieve skin conditions.',
+  ),
 ];

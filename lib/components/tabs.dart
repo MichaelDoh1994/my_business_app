@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_business_app/screens/appointment.dart';
+import 'package:my_business_app/screens/appointment_page.dart';
 import 'package:my_business_app/screens/home_page.dart';
 import 'package:my_business_app/screens/settings.dart';
 
@@ -24,29 +23,14 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(context) {
     Widget activePage = const HomeScreen();
-    String activePageTitle = 'Home';
 
     if (selectedPageIndex == 1) {
       activePage = const AppointmentScreen();
-      activePageTitle = 'Appointments';
     } else if (selectedPageIndex == 2) {
       activePage = const SettingsScreen();
-      activePageTitle = 'Settings';
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(activePageTitle),
-        actions: [
-          IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(Icons.exit_to_app),
-            color: Theme.of(context).colorScheme.primary,
-          )
-        ],
-      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedPageIndex,

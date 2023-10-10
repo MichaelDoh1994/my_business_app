@@ -13,7 +13,6 @@ class Services extends StatelessWidget {
   @override
   Widget build(context) {
     return ListView.builder(
-      scrollDirection: Axis.horizontal,
       itemCount: services.length,
       itemBuilder: (ctx, index) => ServiceItem(
         services[index],

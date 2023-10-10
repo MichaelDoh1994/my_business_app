@@ -9,16 +9,19 @@ class ServiceItem extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      margin: const EdgeInsets.only(
-        top: 30,
-        bottom: 20,
-        left: 20,
-        right: 20,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(10),
       ),
+      margin: const EdgeInsets.all(10),
       width: 100,
       height: 100,
-      child: Image.asset(
-        service.image,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          service.image,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
