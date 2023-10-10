@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_business_app/components/appointment_card.dart';
 import 'package:my_business_app/components/circle_image.dart';
@@ -11,9 +12,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          CircleImage(
-            radius: 20,
+        actions: [
+          GestureDetector(
+            child: const CircleImage(
+              radius: 20,
+            ),
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+            },
           ),
         ],
       ),
