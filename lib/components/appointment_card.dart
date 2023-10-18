@@ -47,15 +47,19 @@ class _AppointmentCardState extends State<AppointmentCard> {
                     onPressed: () {},
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: const Text('Cancel',
-                        style: TextStyle(color: Colors.white)),
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () {},
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                    child: const Text('Re-schedule',
-                        style: TextStyle(color: Colors.white)),
+                    child: const Text(
+                      'Re-schedule',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   )
                 ],
               ),

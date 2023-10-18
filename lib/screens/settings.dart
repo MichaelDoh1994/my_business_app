@@ -39,29 +39,28 @@ class SettingsScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemCount: settingsItems.length,
-                itemBuilder: (ctx, idx) => Card(
-                  margin: const EdgeInsets.all(20),
-                  color: Theme.of(context).colorScheme.primary,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 10,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: TextButton.icon(
+                    onPressed: () {},
+                    icon: Icon(
+                      settingsItems[index]['Icon'],
+                      color: Theme.of(context).colorScheme.primary,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          settingsItems[idx]['Icon'],
-                          color: Colors.white,
+                    label: Text(
+                      settingsItems[index]['Name'],
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      side: MaterialStatePropertyAll(
+                        BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          settingsItems[idx]['Name'],
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

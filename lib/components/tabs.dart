@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_business_app/components/circle_image.dart';
 import 'package:my_business_app/screens/appointment_page.dart';
 import 'package:my_business_app/screens/home_page.dart';
 import 'package:my_business_app/screens/settings.dart';
@@ -20,9 +22,17 @@ class _TabsScreenState extends State<TabsScreen> {
     });
   }
 
+  void _navigateToAppointmentPage() {
+    setState(() {
+      selectedPageIndex = 1;
+    });
+  }
+
   @override
   Widget build(context) {
-    Widget activePage = const HomeScreen();
+    Widget activePage = HomeScreen(
+      navigateToAppointmentPage: _navigateToAppointmentPage,
+    );
 
     if (selectedPageIndex == 1) {
       activePage = const AppointmentScreen();
@@ -31,6 +41,21 @@ class _TabsScreenState extends State<TabsScreen> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          GestureDetector(
+            child: const Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: CircleImage(
+                radius: 20,
+              ),
+            ),
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+            },
+          ),
+        ],
+      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedPageIndex,

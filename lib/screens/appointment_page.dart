@@ -5,8 +5,10 @@ class AppointmentScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return const Center(
-      child: Text('Appointment Page!'),
+    return const Scaffold(
+      body: Center(
+        child: Text('Appointment Page!'),
+      ),
     );
   }
 }
