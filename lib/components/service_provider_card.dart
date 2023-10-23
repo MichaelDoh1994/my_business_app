@@ -17,6 +17,7 @@ class ServiceProviderCard extends StatelessWidget {
         children: [
           CircleImage(
             radius: 25,
+            image: null,
           ),
           SizedBox(
             width: 10,

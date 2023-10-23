@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_business_app/components/circle_image.dart';
+import 'package:my_business_app/screens/about_us.dart';
+import 'package:my_business_app/screens/edit_profile.dart';
+
+import '../components/circle_image.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -7,9 +11,29 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(context) {
     final List<Map<String, dynamic>> settingsItems = [
-      {'Icon': Icons.edit_attributes_rounded, 'Name': 'Edit Profile'},
-      {'Icon': Icons.info_outline_rounded, 'Name': 'About Us'},
-      {'Icon': Icons.exit_to_app_rounded, 'Name': 'Log Out'},
+      {
+        'Icon': Icons.edit_attributes_rounded,
+        'Name': 'Edit Profile',
+        'Action': () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (ctx) => const EditProfile(),
+              ),
+            ),
+      },
+      {
+        'Icon': Icons.info_outline_rounded,
+        'Name': 'About Us',
+        'Action': () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (ctx) => const AboutUs(),
+              ),
+            ),
+      },
+      {
+        'Icon': Icons.exit_to_app_rounded,
+        'Name': 'Log Out',
+        'Action': () => FirebaseAuth.instance.signOut(),
+      },
       {'Icon': Icons.delete_forever_rounded, 'Name': 'Delete Account'},
     ];
 
@@ -22,6 +46,7 @@ class SettingsScreen extends StatelessWidget {
           children: [
             const CircleImage(
               radius: 80,
+              image: null,
             ),
             const SizedBox(
               height: 20,
@@ -44,7 +69,7 @@ class SettingsScreen extends StatelessWidget {
                     horizontal: 20,
                   ),
                   child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: settingsItems[index]['Action'],
                     icon: Icon(
                       settingsItems[index]['Icon'],
                       color: Theme.of(context).colorScheme.primary,
