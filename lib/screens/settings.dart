@@ -1,12 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_business_app/screens/about_us.dart';
 import 'package:my_business_app/screens/edit_profile.dart';
 
 import '../components/circle_image.dart';
 
+final userCredentials = FirebaseAuth.instance.currentUser!;
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
+
+  void deleteAccount() async {
+    await userCredentials.delete();
+  }
 
   @override
   Widget build(context) {
@@ -23,18 +28,29 @@ class SettingsScreen extends StatelessWidget {
       {
         'Icon': Icons.info_outline_rounded,
         'Name': 'About Us',
-        'Action': () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (ctx) => const AboutUs(),
+        'Action': () => showDialog(
+              context: context,
+              builder: (context) => const AboutDialog(
+                applicationIcon: FlutterLogo(),
+                applicationLegalese: 'Legalese',
+                applicationName: 'My Business App',
+                applicationVersion: '1.0.0',
+                children: [
+                  Text('Created by Michael Doh'),
+                ],
               ),
-            ),
+            )
       },
       {
         'Icon': Icons.exit_to_app_rounded,
         'Name': 'Log Out',
         'Action': () => FirebaseAuth.instance.signOut(),
       },
-      {'Icon': Icons.delete_forever_rounded, 'Name': 'Delete Account'},
+      {
+        'Icon': Icons.delete_forever_rounded,
+        'Name': 'Delete Account',
+        'Action': () => deleteAccount(),
+      },
     ];
 
     return Scaffold(
@@ -46,7 +62,6 @@ class SettingsScreen extends StatelessWidget {
           children: [
             const CircleImage(
               radius: 80,
-              image: null,
             ),
             const SizedBox(
               height: 20,

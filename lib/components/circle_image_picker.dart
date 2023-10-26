@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_business_app/components/circle_image.dart';
 
 class CircleImagePicker extends StatefulWidget {
   const CircleImagePicker({
@@ -41,15 +42,18 @@ class _CircleImagePickerState extends State<CircleImagePicker> {
   Widget build(context) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: widget.radius,
-          backgroundColor: Colors.grey,
-          foregroundImage:
-              _pickedImageFile != null ? FileImage(_pickedImageFile!) : null,
-        ),
+        if (_pickedImageFile == null)
+          const CircleImage(radius: 80)
+        else
+          CircleAvatar(
+            radius: widget.radius,
+            backgroundColor: Colors.grey,
+            foregroundImage:
+                _pickedImageFile != null ? FileImage(_pickedImageFile!) : null,
+          ),
         TextButton.icon(
           onPressed: _pickImage,
-          icon: const Icon(Icons.image),
+          icon: const Icon(Icons.camera),
           label: Text(
             'Update Image',
             style: TextStyle(

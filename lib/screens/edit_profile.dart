@@ -61,7 +61,7 @@ class _EditProfileState extends State<EditProfile> {
           .collection('Users')
           .withConverter<NewUser>(
             fromFirestore: (snapshot, options) => newUser,
-            toFirestore: (NewUser newUser, options) => newUser.toFirestore(),
+            toFirestore: (newUser, options) => newUser.toFirestore(),
           )
           .doc(userCredentials.uid);
 
@@ -79,6 +79,7 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ),
       );
+
       setState(() {
         _isLoading = false;
       });

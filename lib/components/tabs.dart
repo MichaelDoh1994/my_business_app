@@ -48,7 +48,6 @@ class _TabsScreenState extends State<TabsScreen> {
               padding: EdgeInsets.only(right: 10),
               child: CircleImage(
                 radius: 20,
-                image: null,
               ),
             ),
             onTap: () {

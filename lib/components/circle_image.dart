@@ -1,23 +1,52 @@
-import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+final db = FirebaseFirestore.instance;
+final userCredentials = FirebaseAuth.instance.currentUser!;
 
 class CircleImage extends StatelessWidget {
   const CircleImage({
     super.key,
     required this.radius,
-    required this.image,
   });
 
   final double radius;
-  final File? image;
 
   @override
   Widget build(context) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundColor: Colors.grey,
-      foregroundImage: image != null ? FileImage(image!) : null,
+    return StreamBuilder(
+      stream: db.collection("Users").doc(userCredentials.uid).snapshots(),
+      builder: (ctx, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (snapshot.hasError) {
+          return const Center(
+            child: Text('Something went wrong.'),
+          );
+        }
+
+        if (!snapshot.data!.data()!.containsKey('image')) {
+          return CircleAvatar(
+            radius: radius,
+            backgroundColor: Colors.grey,
+          );
+        }
+
+        final loadedImage = snapshot.data!['image'];
+
+        return CircleAvatar(
+          radius: radius,
+          backgroundColor: Colors.grey,
+          foregroundImage: NetworkImage(
+            loadedImage,
+          ),
+        );
+      },
     );
   }
 }
