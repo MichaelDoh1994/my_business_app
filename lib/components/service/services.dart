@@ -15,7 +15,7 @@ class Services extends StatelessWidget {
     return ListView.builder(
       itemCount: services.length,
       itemBuilder: (ctx, index) => ServiceItem(
-        services[index],
+        service: services[index],
       ),
     );
   }

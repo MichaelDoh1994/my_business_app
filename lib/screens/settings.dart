@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_business_app/screens/edit_profile.dart';
@@ -5,12 +6,17 @@ import 'package:my_business_app/screens/edit_profile.dart';
 import '../components/circle_image.dart';
 
 final userCredentials = FirebaseAuth.instance.currentUser!;
+final db = FirebaseFirestore.instance;
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   void deleteAccount() async {
     await userCredentials.delete();
+  }
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUser() async {
+    return await db.collection("Users").doc(userCredentials.uid).get();
   }
 
   @override
@@ -66,12 +72,25 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Text(
-              'User Name Goes Here',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.bold,
-              ),
+            FutureBuilder(
+              future: getUser(),
+              builder: (ctx, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                final username = snapshot.data!['username'];
+
+                return Text(
+                  username,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
             ),
             const SizedBox(
               height: 20,

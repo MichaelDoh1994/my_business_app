@@ -13,10 +13,14 @@ class CircleImage extends StatelessWidget {
 
   final double radius;
 
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUser() async {
+    return await db.collection("Users").doc(userCredentials.uid).get();
+  }
+
   @override
   Widget build(context) {
-    return StreamBuilder(
-      stream: db.collection("Users").doc(userCredentials.uid).snapshots(),
+    return FutureBuilder(
+      future: getUser(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
