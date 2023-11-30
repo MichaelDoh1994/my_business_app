@@ -8,7 +8,7 @@ const dummyServices = [
         'Providing trendy haircuts and shaves while maintaining a friendly and welcoming client atmosphere.',
   ),
   Service(
-    title: 'Hair Dressing',
+    title: 'Hair',
     image: 'assets/images/new hair.webp',
     description:
         'improve the control and manageability of hair, to impart some luster, and to maintain a hairstyle in spite of the movement of daily activities and despite the various environmental conditions',
@@ -26,7 +26,7 @@ const dummyServices = [
         'Exceptional nail technician providing top notch nail care in a relaxing environment.',
   ),
   Service(
-    title: 'Skin Care',
+    title: 'Skin-Care',
     image: 'assets/images/skin.webp',
     description:
         'A range of practices that support skin integrity, enhance its appearance, and relieve skin conditions.',

@@ -73,6 +73,16 @@ flutter:
     - assets/images/profile.webp
     - assets/images/nails.webp
     - assets/images/skin.webp
+    - assets/images/andy.webp
+    - assets/images/biso.webp
+    - assets/images/dani.webp
+    - assets/images/devin.webp
+    - assets/images/jo.webp
+    - assets/images/kenna.webp
+    - assets/images/solemn.webp
+    - assets/images/sweet.webp
+    - assets/images/tonali.webp
+    - assets/images/yello.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

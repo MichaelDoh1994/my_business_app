@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'appointment.dart';
 
 class NewUser {
   final String? name;
@@ -7,6 +8,7 @@ class NewUser {
   final String? dateOfBirth;
   final String? state;
   final String? image;
+  final List<Appointment>? appointments;
 
   NewUser({
     this.name,
@@ -15,6 +17,7 @@ class NewUser {
     this.dateOfBirth,
     this.state,
     this.image,
+    this.appointments,
   });
 
   factory NewUser.fromFirestore(
@@ -29,6 +32,7 @@ class NewUser {
       dateOfBirth: data?['dateOfBirth'],
       state: data?['state'],
       image: data?['image'],
+      appointments: data?['appointments'],
     );
   }
 
@@ -40,6 +44,7 @@ class NewUser {
       if (dateOfBirth != null) "dateOfBirth": dateOfBirth,
       if (state != null) "state": state,
       if (image != null) "image": image,
+      if (appointments != null) "appointments": appointments,
     };
   }
 
